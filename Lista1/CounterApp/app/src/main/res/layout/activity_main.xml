@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="391dp"
+        android:layout_height="343dp"
+        android:text="0"
+        android:textAlignment="center"
+        android:textSize="250sp"
+        app:layout_constraintBottom_toTopOf="@+id/resetButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/resetButton"
+        android:layout_width="411dp"
+        android:layout_height="71dp"
+        android:layout_marginBottom="80dp"
+        android:onClick="resetCounter"
+        android:text="Reset"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/countUpButton"
+        android:layout_width="192dp"
+        android:layout_height="71dp"
+        android:layout_marginTop="5dp"
+        android:onClick="countUp"
+        android:text="Count Up"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resetButton" />
+
+    <Button
+        android:id="@+id/countDownButton"
+        android:layout_width="192dp"
+        android:layout_height="71dp"
+        android:layout_marginTop="5dp"
+        android:onClick="countDown"
+        android:text="Count Down"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resetButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
