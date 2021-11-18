@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">PhysicsQuiz</string>
+    <string name="questions_amount">%1$d/%2$d</string>
+    <string name="score_string">%1$d/%2$d %3$d\-%4$d %5$d\%% score!</string>
+    <string-array name="questions_array">
+        <item>2*2=4?</item>
+        <item>Is answer false?</item>
+        <item>Is cheat functionality working?</item>
+    </string-array>
+    <string-array name="answers_array">
+        <item>true</item>
+        <item>false</item>
+        <item>true</item>
+    </string-array>
+    <string name="title_activity_results">resultsActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+</resources>
