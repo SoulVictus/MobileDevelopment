@@ -1,6 +1,5 @@
 package com.example.studentcrimeapp;
 
-import android.content.Intent;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,11 +10,11 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.studentcrimeapp.database.Crime;
 import com.kunzisoft.switchdatetime.SwitchDateTimeDialogFragment;
 
 import java.text.SimpleDateFormat;
@@ -24,7 +23,6 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.TimeZone;
-import java.util.UUID;
 
 public class CrimePagerAdapter extends RecyclerView.Adapter<CrimePagerAdapter.ViewHolder> {
     private CrimeLab crimeLab;
@@ -110,9 +108,9 @@ public class CrimePagerAdapter extends RecyclerView.Adapter<CrimePagerAdapter.Vi
     public void onBindViewHolder(CrimePagerAdapter.ViewHolder viewHolder, final int position) {
         Crime currentCrime = crimeLab.getCrimes().get(position);
 
-        viewHolder.getDateEditButton().setText(currentCrime.getDate());
+        viewHolder.getDateEditButton().setText(currentCrime.getDate().toString());
         viewHolder.getTitleTextView().setText(currentCrime.getTitle());
-        viewHolder.getSolvedCheckBox().setChecked(currentCrime.getIsSolved());
+        viewHolder.getSolvedCheckBox().setChecked(currentCrime.getSolved());
         viewHolder.getUuidTextView().setText(currentCrime.getId().toString());
 
         if (position == 0)
@@ -129,6 +127,7 @@ public class CrimePagerAdapter extends RecyclerView.Adapter<CrimePagerAdapter.Vi
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 currentCrime.setSolved(isChecked);
+                crimeLab.updateCrime(currentCrime.getId());
             }
         });
 
@@ -136,6 +135,7 @@ public class CrimePagerAdapter extends RecyclerView.Adapter<CrimePagerAdapter.Vi
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 currentCrime.setTitle(v.getText().toString());
+                crimeLab.updateCrime(currentCrime.getId());
                 viewHolder.getTitleTextView().setText(currentCrime.getTitle());
                 return false;
             }
@@ -172,6 +172,7 @@ public class CrimePagerAdapter extends RecyclerView.Adapter<CrimePagerAdapter.Vi
             @Override
             public void onPositiveButtonClick(Date date) {
                 currentCrime.setDate(date);
+                crimeLab.updateCrime(currentCrime.getId());
                 viewHolder.getDateEditButton().setText(date.toString());
             }
 

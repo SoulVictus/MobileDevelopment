@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CrimePagerActivity">
+    tools:context=".CrimeAddActivity">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -70,6 +70,7 @@
 
         <CheckBox
             android:id="@+id/isSolvedCheckBox"
+            android:onClick="onCheckBoxClick"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Solved" />
@@ -78,44 +79,15 @@
             android:id="@+id/dateEditButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="Set Time" />
 
         <Button
             android:id="@+id/deleteButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="onDeleteButtonClick"
-            android:text="delete" />
+            android:onClick="onAddButtonClick"
+            android:text="add" />
 
-        <TextView
-            android:id="@+id/uuidTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <Button
-            android:id="@+id/firstItemButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="first" />
-
-        <Button
-            android:id="@+id/lastItemButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="last" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
