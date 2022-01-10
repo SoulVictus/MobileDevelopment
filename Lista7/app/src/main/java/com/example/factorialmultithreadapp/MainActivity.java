@@ -15,8 +15,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     BigInteger factorialResult;
-    int numberOfThreads;
-
     Button calculateButton;
     TextView factorialResultTextView;
     EditText numberInput;
@@ -38,14 +36,27 @@ public class MainActivity extends AppCompatActivity {
         factorialResult = new BigInteger("1");
         int typedNumber = Integer.parseInt(numberInput.getText().toString());
 
-        numberOfThreads = (typedNumber > 20) ? Runtime.getRuntime().availableProcessors() : 1;
+        int numberOfThreads = (typedNumber > 20) ? Runtime.getRuntime().availableProcessors() : 1;
 
         ArrayList<FactorialThread> threadList = new ArrayList<FactorialThread>();
 
         int step = typedNumber / numberOfThreads;
+        int offValue = typedNumber - (step*numberOfThreads);
         for (int i = 0; i < numberOfThreads; i++) {
-            threadList.add(new FactorialThread((i * step)+1, (i * step) + step + 1));
-            threadList.get(i).run();
+            if (i != numberOfThreads - 1)
+                threadList.add(new FactorialThread((i * step)+1, (i * step) + step + 1));
+            else
+                threadList.add(new FactorialThread((i * step)+1, (i * step) + step + 1 + offValue));
+            threadList.get(i).start();
+        }
+
+        for(int i = 0; i < numberOfThreads; i++) {
+            try {
+                threadList.get(i).join();
+            }
+            catch (InterruptedException e) {
+                threadList.get(i).interrupt();
+            }
         }
 
         for (int i = 0 ; i < numberOfThreads; i++) {

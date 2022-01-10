@@ -4,18 +4,11 @@ import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.GET;
-import retrofit2.http.Query;
 
 public class CountryRepository {
     private CountryDao countryDao;
@@ -24,23 +17,19 @@ public class CountryRepository {
     public CountryRepository(Application application) {
         CountryRoomDatabase db = CountryRoomDatabase.getInstance(application);
         countryDao = db.countryDao();
-
-        System.out.println("REPOSITORY");
         allCountries = countryDao.getAll();
     }
 
     public void fetchData() {
         ApiController controller = new ApiController();
 
-        CountryAPI countryAPI = controller.getClient().create(CountryAPI.class);
-        Call<List<CountryApiModel>> call = countryAPI.loadCountries();
+        CountryService countryService = controller.getClient().create(CountryService.class);
+        Call<List<CountryApiModel>> call = countryService.loadCountries();
 
         call.enqueue(new Callback<List<CountryApiModel>>() {
             @Override
             public void onResponse(Call<List<CountryApiModel>> call, Response<List<CountryApiModel>> response) {
-                System.out.println("RESPONSE");
                 if (response.isSuccessful()) {
-                    System.out.println("GET DATA FROM RESPONSE");
                     List<CountryApiModel> listFromAPI = response.body();
                     for (int i = 0; i < listFromAPI.size(); i++) {
                         String name = listFromAPI.get(i).getName().getCommon();

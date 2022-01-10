@@ -13,11 +13,11 @@ public class FactorialThread extends Thread {
     }
 
     public void run() {
-        result = new BigInteger(Integer.toString(startIndex));
-        for (int i = startIndex + 1; i < endIndex; i++)
-        {
-            result = result.multiply(BigInteger.valueOf(i));
-        }
+            result = new BigInteger(Integer.toString(startIndex));
+            for (int i = startIndex + 1; i < endIndex; i++)
+            {
+                result = result.multiply(BigInteger.valueOf(i));
+            }
     }
 
     public BigInteger getResult() {
